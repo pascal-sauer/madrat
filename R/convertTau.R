@@ -13,7 +13,7 @@ convertTau <- function(x) {
 
   "!# @monitor madrat:::sysdata$iso_cell magclass:::ncells"
   "!# @ignore  madrat:::toolAggregate"
-
+stop("asdasd")
   tau  <- x[, , "tau"]
   xref <- x[, , "xref"]
 

@@ -145,7 +145,11 @@ readSource <- function(type, subtype = NULL, subset = NULL, # nolint: cyclocomp_
     # if prefix is correct or convert the locally defined x is passed, so check it exists
     stopifnot(prefix == "read" || exists("x"))
     withr::local_dir(sourcefolder)
-    x <- withMadratLogging(eval(parse(text = functionname)))
+    if (prefix == "read") {
+      x <- withMadratLogging(sources[[type]][[prefix]]())
+    } else {
+      x <- withMadratLogging(sources[[type]][[prefix]](x))
+    }
     setWrapperInactive("wrapperChecks")
 
     # ensure we are always working with a list with entries "x" and "class"
@@ -195,10 +199,10 @@ readSource <- function(type, subtype = NULL, subset = NULL, # nolint: cyclocomp_
   }
 
   if (is.null(subtype)) {
-    functionCall <- prepFunctionName(type = type, prefix = prefix)
-    functionName <- sub("\\(.*$", "", functionCall)
+    # functionCall <- prepFunctionName(type = type, prefix = prefix)
+    # functionName <- sub("\\(.*$", "", functionCall)
     # get default subtype argument if available, otherwise NULL
-    subtype <- formals(eval(parse(text = functionName)))[["subtype"]]
+    subtype <- formals(sources[[type]][[prefix]])[["subtype"]]
   }
 
   args <- NULL
