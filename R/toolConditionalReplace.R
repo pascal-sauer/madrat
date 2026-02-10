@@ -30,7 +30,7 @@ toolConditionalReplace <- function(x, conditions, replaceby = 0) {
 
     if (any(xCheck)) {
       percent    <- sum(xCheck) / length(x) * 100
-      verbosity  <- ifelse(percent > 1, 1, 2)
+      verbosity  <- if (percent > 1) 1 else 2
       vcat(verbosity = verbosity, paste(percent, "% of data points with", conditions[i], "set to", replaceby[i], "."))
       x[xCheck] <- replaceby[i]
     }

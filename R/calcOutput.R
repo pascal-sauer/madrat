@@ -273,7 +273,7 @@ calcOutput <- function(type, aggregate = TRUE, file = NULL, years = NULL, # noli
 
   local_dir(getConfig("outputfolder"))
 
-  functionname <- prepFunctionName(type = type, prefix = "calc", ignore = ifelse(is.null(years), "years", NA))
+  functionname <- prepFunctionName(type = type, prefix = "calc", ignore = if (is.null(years)) "years" else NA)
   extraArgs <- sapply(attr(functionname, "formals"), function(x) return(eval(parse(text = x))), simplify = FALSE) # nolint
   args <- c(extraArgs, list(...))
 

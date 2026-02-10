@@ -87,7 +87,7 @@ getConfig <- function(option = NULL, raw = FALSE, verbose = TRUE, print = FALSE)
     vcat(1, "", show_prefix = FALSE)
     vcat(1, "Current madrat configuration:", show_prefix = FALSE)
     for (configName in names(cfg)) {
-      quotes <- ifelse(is.character(cfg[[configName]]), "\"", "")
+      quotes <- if (is.character(cfg[[configName]])) "\"" else ""
       value <- cfg[[configName]]
       if (is.null(value)) value <- "NULL"
       vcat(1, paste0("   ", format(configName, width = nmax), " -> ",

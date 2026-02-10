@@ -159,7 +159,7 @@ fingerprintFiles <- function(paths) {
         character(1),
         algo = getConfig("hash"),
         file = TRUE,
-        length = ifelse(file.exists(file.path(path, ".fullhash")), Inf, 300)
+        length = if (file.exists(file.path(path, ".fullhash"))) Inf else 300
       )
       files$path <- NULL
     }

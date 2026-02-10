@@ -142,9 +142,9 @@ downloadSource <- function(type, subtype = NULL, overwrite = FALSE, numberOfTrie
                                        " -> ", functionCall, " (madrat ", unname(getNamespaceVersion("madrat")),
                                        " | ", attr(functionCall, "pkgcomment"), ")"),
                       type    = type,
-                      subtype = ifelse(is.null(subtype), "none", subtype),
+                      subtype = if (is.null(subtype)) "none" else subtype,
                       time    = format(Sys.time(), "%F %T %Z"))
-    meta$accessibility <- ifelse(!is.null(meta$doi), "gold", "silver")
+    meta$accessibility <- if (is.null(meta$doi)) "silver" else "gold"
 
     # reorder meta entries
     preferredOrder <- c("title", "description", "author", "doi", "url", "accessibility", "license", "version",

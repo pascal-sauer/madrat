@@ -338,7 +338,7 @@ toolAggregateUnweighted <- function(x, rel, to, dim, xComment) {
   sets <- getSets(x, fulldim = FALSE)
   # update set name if number of sub-dimensions reduced to 1
   if (ndim(out, dim = dim) == 1  && ndim(x, dim = dim) > 1) {
-    sets[dim] <- ifelse(!is.null(to), to, NA)
+    sets[dim] <- if (is.null(to)) NA else to
   }
   getSets(out, fulldim = FALSE) <- sets
 

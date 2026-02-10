@@ -294,14 +294,14 @@ retrieveData <- function(model, rev = 0, dev = "", cachetype = "def", puc = iden
 
   cfg$collectionName <- paste0("rev", rev, dev, "_", paste(cfg$regionscode, collapse = "-"), "_",
                                .argsHash(cfg$formalsReduced, useLabels), tolower(model),
-                               ifelse(getConfig("debug") == TRUE, "_debug", ""))
+                               if (isTRUE(getConfig("debug"))) "_debug" else "")
   if (is.null(cfg$pucArguments)) {
     extraArgs <- ""
   } else {
     extraArgs <- paste0(paste(cfg$pucArguments, collapse = "_"), "_")
   }
   cfg$pucName     <- paste0("rev", rev, dev, "_", extraArgs, .argsHash(cfg$formalsPUC, useLabels),
-                            tolower(model), ifelse(getConfig("debug") == TRUE, "_debug", ""))
+                            tolower(model), if (isTRUE(getConfig("debug"))) "_debug" else "")
 
   return(cfg)
 }
