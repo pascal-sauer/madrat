@@ -1,0 +1,271 @@
+# May All Data be Reproducible and Transparent (MADRaT) \*
+
+R package **madrat**, version **3.36.2**
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/madrat)](https://cran.r-project.org/package=madrat)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1115490.svg)](https://doi.org/10.5281/zenodo.1115490)
+[![R build
+status](https://github.com/pik-piam/madrat/workflows/check/badge.svg)](https://github.com/pik-piam/madrat/actions)
+[![codecov](https://codecov.io/gh/pik-piam/madrat/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pik-piam/madrat)
+[![r-universe](https://pik-piam.r-universe.dev/badges/madrat)](https://pik-piam.r-universe.dev/builds)
+
+## Purpose and Functionality
+
+Provides a framework which should improve reproducibility and
+transparency in data processing. It provides functionality such as
+automatic meta data creation and management, rudimentary quality
+management, data caching, work-flow management and data aggregation. \*
+The title is a wish not a promise. By no means we expect this package to
+deliver everything what is needed to achieve full reproducibility and
+transparency, but we believe that it supports efforts in this direction.
+
+## Installation
+
+For installation of the most recent package version an additional
+repository has to be added in R:
+
+``` r
+options(repos = c(CRAN = "@CRAN@", pik = "https://rse.pik-potsdam.de/r/packages"))
+```
+
+The additional repository can be made available permanently by adding
+the line above to a file called `.Rprofile` stored in the home folder of
+your system (`Sys.glob("~")` in R returns the home directory).
+
+After that the most recent version of the package can be installed using
+`install.packages`:
+
+``` r
+install.packages("madrat")
+```
+
+Package updates can be installed using `update.packages` (make sure that
+the additional repository has been added before running that command):
+
+``` r
+update.packages()
+```
+
+## Tutorial
+
+The package comes with vignettes describing the basic functionality of
+the package and how to use it. You can load them with the following
+command (the package needs to be installed):
+
+``` r
+vignette("madrat-caching") # Data caching in madrat
+vignette("madrat-puc")     # Portable unagreggated collections (PUCs) in MADRaT
+vignette("madrat")         # Data preparation with madrat
+```
+
+## Questions / Problems
+
+In case of questions / problems please contact Jan Philipp Dietrich
+<dietrich@pik-potsdam.de>.
+
+## Citation
+
+To cite package **madrat** in publications use:
+
+Dietrich J, Sauer P, Baumstark L, Wirth S, Giannousakis A, Rodrigues R,
+Bodirsky B, Leip D, Crawford M, Kreidenweis U, Klein D, Rein P (2026).
+“madrat: May All Data be Reproducible and Transparent (MADRaT) \*.”
+<doi:10.5281/zenodo.1115490> <https://doi.org/10.5281/zenodo.1115490>,
+Version: 3.36.2, <https://github.com/pik-piam/madrat>.
+
+A BibTeX entry for LaTeX users is
+
+``` latex
+@Misc{,
+ title = {madrat: May All Data be Reproducible and Transparent (MADRaT) *},
+ author = {Jan Philipp Dietrich and Pascal Sauer and Lavinia Baumstark and Stephen Wirth and Anastasis Giannousakis and Renato Rodrigues and Benjamin Leon Bodirsky and Debbora Leip and Michael Crawford and Ulrich Kreidenweis and David Klein and Patrick Rein},
+ doi = {10.5281/zenodo.1115490},
+ date = {2026-03-30},
+ year = {2026},
+ url = {https://github.com/pik-piam/madrat},
+ note = {Version: 3.36.2},
+}
+```
+
+# Package index
+
+## Core Workflow
+
+Main functions to call other pipeline steps
+
+- [`calcOutput()`](calcOutput.md) : calcOutput
+- [`downloadSource()`](downloadSource.md) : downloadSource
+- [`readSource()`](readSource.md) : readSource
+- [`retrieveData()`](retrieveData.md) : retrieveData
+- [`returnCalcOutput()`](returnCalcOutput.md) : Construct a list with
+  the information required for calc-functions to return
+
+## Available Functions
+
+Discover available calc, read, and tool functions
+
+- [`getCalculations()`](getCalculations.md) : getCalculations
+- [`getLocation()`](getLocation.md) : getLocation
+- [`getSources()`](getSources.md) : getSources
+- [`installedMadratUniverse()`](installedMadratUniverse.md) :
+  installedMadratUniverse
+
+## Configuration
+
+Configuration management for the madrat framework
+
+- [`getConfig()`](getConfig.md) : getConfig
+- [`madratAttach()`](madratAttach.md)
+  [`madratDetach()`](madratAttach.md) : madratAttach / madratDetach
+- [`setConfig()`](setConfig.md) [`localConfig()`](setConfig.md) :
+  setConfig
+
+## Cache Management
+
+Functions for handling cached data
+
+- [`cacheCleanup()`](cacheCleanup.md) : cacheCleanup
+- [`cacheCopy()`](cacheCopy.md) : cacheCopy
+
+## Dependency Graph
+
+Analyze function dependencies in the madrat universe
+
+- [`getDependencies()`](getDependencies.md) : getDependencies
+- [`getMadratGraph()`](getMadratGraph.md) : getMadratGraph
+- [`getMadratInfo()`](getMadratInfo.md) : getMadratInfo
+- [`visualizeDependencies()`](visualizeDependencies.md) :
+  visualizeDependencies
+
+## Mapping
+
+Tools for working with mappings
+
+- [`addMapping()`](addMapping.md) : addMapping
+- [`toolConvertMapping()`](toolConvertMapping.md) : Tool: ConvertMapping
+- [`toolGetMapping()`](toolGetMapping.md) : Tool: GetMapping
+
+## Aggregation
+
+Spatial aggregation and disaggregation
+
+- [`pucAggregate()`](pucAggregate.md) : pucAggregate
+- [`toolAggregate()`](toolAggregate.md) : toolAggregate
+
+## Tools: Countries
+
+Country and ISO code handling
+
+- [`getISOlist()`](getISOlist.md) : get official ISO list
+- [`toolCountry2isocode()`](toolCountry2isocode.md) :
+  toolCountry2isocode
+- [`toolCountryFill()`](toolCountryFill.md) : Tool: CountryFill
+- [`toolFillWithRegionAvg()`](toolFillWithRegionAvg.md) : Tool:
+  FillWithRegionAvg
+- [`toolISOhistorical()`](toolISOhistorical.md) : Tool: ISOhistorical
+
+## Tools: Temporal Processing
+
+Time series manipulation and interpolation
+
+- [`toolFillYears()`](toolFillYears.md) : toolFillYears
+- [`toolTimeAverage()`](toolTimeAverage.md) : toolTimeAverage
+- [`toolTimeSpline()`](toolTimeSpline.md) : Smooth a magclass time
+  series with optional anchor years
+
+## Tools: Data Manipulation
+
+General data transformation tools
+
+- [`toolConditionalReplace()`](toolConditionalReplace.md) :
+  toolConditionalReplace
+- [`toolFixWeight()`](toolFixWeight.md) : toolFixWeight
+- [`toolNAreplace()`](toolNAreplace.md) : Tool: NA replace
+- [`toolOrderCells()`](toolOrderCells.md) : toolOrderCells
+- [`toolXlargest()`](toolXlargest.md) : toolXlargest
+
+## Tools: Source Downloading
+
+Helpers for downloading source data
+
+- [`metadataGFZ()`](metadataGFZ.md) : metadataGFZ
+- [`toolManualDownload()`](toolManualDownload.md) : Tool: ManualDownload
+
+## Tools: Subtype Handling
+
+Tools for handling subtypes in read functions
+
+- [`toolSplitSubtype()`](toolSplitSubtype.md) : Tool: SplitSubtype
+- [`toolSubtypeSelect()`](toolSubtypeSelect.md) : Tool: SubtypeSelect
+
+## Madrat Messages
+
+Madrat-specific messaging system stored in cache
+
+- [`getMadratMessage()`](getMadratMessage.md) : getMadratMessage
+- [`putMadratMessage()`](putMadratMessage.md) : putMadratMessage
+- [`resetMadratMessages()`](resetMadratMessages.md) :
+  resetMadratMessages
+- [`vcat()`](vcat.md) : Tool: Verbosity Cat
+
+## Metadata Comments
+
+Handling metadata comments on magclass objects
+
+- [`getFromComment()`](getFromComment.md) : getFromComment
+
+## Source Redirection
+
+Redirect source data to alternative locations
+
+- [`getLinkFunction()`](getLinkFunction.md) : getLinkFunction
+- [`redirectSource()`](redirectSource.md) : redirectSource
+
+## Code Labeling
+
+Region code labeling utilities
+
+- [`regionscode()`](regionscode.md) : Tool: regionscode
+- [`toolCodeLabels()`](toolCodeLabels.md) : Tool: CodeLabels
+
+## Validation
+
+Data validation and comparison tools
+
+- [`compareData()`](compareData.md) : compareData
+- [`compareMadratOutputs()`](compareMadratOutputs.md) : Compare a madrat
+  function's output with and without your changes
+- [`toolCompareStatusLogs()`](toolCompareStatusLogs.md) :
+  toolCompareStatusLogs
+
+## Analysis
+
+Performance analysis tools
+
+- [`findBottlenecks()`](findBottlenecks.md) : findBottlenecks
+
+## Example Functions
+
+Example implementations for reference
+
+- [`fullEXAMPLE()`](fullEXAMPLE.md) : fullExample
+- [`readTau()`](readTau.md) : Read Tau
+- [`convertTau()`](convertTau.md) : Convert Tau
+- [`calcTauTotal()`](calcTauTotal.md) : Calculate total tau
+- [`redirectTau()`](redirectTau.md) : redirectTau
+
+## Internal
+
+Internal functions
+
+- [`madrat-package`](madrat-package.md) [`madrat`](madrat-package.md) :
+  May All Data be Reproducible And Transparent (madrat) \*
+
+# Articles
+
+### All vignettes
+
+- [Data caching in madrat](madrat-caching.md):
+- [Portable unagreggated collections (PUCs) in MADRaT](madrat-puc.md):
+- [Data preparation with madrat](madrat.md):
