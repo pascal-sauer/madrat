@@ -39,9 +39,8 @@ globalassign <- function(...) {
 # Build small synthetic replacements for the Tau downloads once, so tests do not have to hit the
 # network (zenodo.org). Each zip mimics what downloadTau/readTau expect for a subtype: the "paper"
 # subtype reads tau_data_1995-2000.mz, the "historical" subtype reads tau_xref_history_country.mz.
-# The "total" crop band is the one calcTauTotal reads (tau.total/xref.total). The fill-source
-# countries (IDN, CHN, QAT) required by convertTau's toolCountryFill call must be present. Values are
-# synthetic, so tests must not assert on exact Tau numbers, only on structure/years.
+# The fill-source countries (IDN, CHN, QAT) required by convertTau's toolCountryFill call must be
+# present.
 mockTauCountries <- c("DEU", "FRA", "USA", "IDN", "CHN", "QAT")
 
 .buildMockTauZip <- function(mzName, years) {

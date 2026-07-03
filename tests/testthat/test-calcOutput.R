@@ -121,8 +121,6 @@ test_that("Malformed calc outputs are properly detected", {
 })
 
 test_that("Calculation for tau example data set works", {
-  # network request is mocked with synthetic data, so we cannot assert exact Tau values here,
-  # only the structure/years of the result (see setup.R localMockedTauDownload)
   localMockedTauDownload()
   sink(tempfile())
   require(magclass)
@@ -131,8 +129,8 @@ test_that("Calculation for tau example data set works", {
   expect_true(is.list(x))
   expect_s4_class(x$x, "magpie")
   expect_equal(nyears(x$x), 1)
-  # the mocked tau is 1 everywhere, so aggregating with the (constant) xref weight yields 1 in every
-  # H12 region - assert both the aggregation happened (12 regions) and the resulting values
+  # mocked tau is 1, so aggregating yields 1 in every region
+  # assert both the aggregation happened and the resulting values
   expect_setequal(getItems(x$x, 1), c("LAM", "OAS", "SSA", "EUR", "NEU", "MEA",
                                       "REF", "CAZ", "CHA", "IND", "JPN", "USA"))
   expect_true(all(x$x == 1))

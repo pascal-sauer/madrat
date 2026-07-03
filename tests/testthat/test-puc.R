@@ -1,6 +1,6 @@
 test_that("puc creation works", {
   skip_on_cran()
-  localMockedTauDownload() # avoid the real Tau download triggered via calcOutput("TauTotal")
+  localMockedTauDownload()
   retrieveData("example", rev = 42, extra = "test1")
   expect_true(dir.exists(getConfig("pucfolder")))
   withr::local_dir(getConfig("pucfolder"))

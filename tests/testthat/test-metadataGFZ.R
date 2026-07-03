@@ -1,5 +1,4 @@
 test_that("metadata can be extracted from GFZ dataservice", {
-  # mock the network request so no real download from doi.org/GFZ is needed
   local_mocked_bindings(
     download.file = function(url, destfile, ...) {
       writeLines(c(
