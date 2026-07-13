@@ -257,7 +257,8 @@ toolZeroWeight <- function(weight, rel, from, to, dim, wdim, partrel, zeroWeight
     } else if (zeroWeight == "setNA") {
       weightSum[weightSum == 0] <- NA
     } else if (zeroWeight == "fix") {
-      weight <- toolFixWeight(weight, toolMapFromRel(rel, from, to), dim)
+      # will only end up here if we are disaggregating, thus coarse = from and fine = to is ok
+      weight <- toolFixWeight(weight, toolMapFromRel(rel, coarse = from, fine = to), dim)
       weightSum <- toolAggregate(weight, rel, from = from, to = to, dim = wdim, partrel = partrel, verbosity = 10)
       if (any(weightSum == 0, na.rm = TRUE)) {
         warning("Critical: toolAggregate zeroWeight = fix did not fix the weight! Please contact a madrat developer.")
@@ -527,15 +528,27 @@ toolExpandRel <- function(rel, x, dim) {
   return(newRel[toItems, names, drop = FALSE])
 }
 
-toolMapFromRel <- function(rel, from, to) {
+toolMapFromRel <- function(rel, coarse, fine) {
+  if (!is.character(coarse) || is.na(coarse)) {
+    coarse <- "coarse"
+  }
+  if (!is.character(fine) || is.na(fine)) {
+    fine <- "fine"
+  }
   if (is.data.frame(rel)) {
-    map <- rel[, c(from, to)]
+    map <- rel[, c(coarse, fine)]
   } else {
     map <- do.call(rbind, lapply(colnames(rel), function(i) {
       return(data.frame(coarse = i, fine = names(which(rel[, i] == 1))))
     }))
-    colnames(map) <- c(from, to)
+    colnames(map) <- c(coarse, fine)
   }
+  # flip coarse and fine if necessary
+  if (length(unique(map[[coarse]])) > length(unique(map[[fine]]))) {
+    map <- map[, 2:1]
+    names(map) <- names(map)[2:1]
+  }
+  stopifnot(length(unique(map[[coarse]])) <= length(unique(map[[fine]])))
   return(map)
 }
 
