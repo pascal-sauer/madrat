@@ -57,7 +57,8 @@ toolFixWeight <- function(weight, map, dim) {
       originalMap2 <- map[[2]]
       map[[1]] <- gsub(".", "p", map[[1]], fixed = TRUE)
       map[[2]] <- gsub(".", "p", map[[2]], fixed = TRUE)
-      extramap <- stats::setNames(nm = map[[2]], originalMap2)
+      extramap <- originalMap2
+      names(extramap) <- map[[2]]
       getItems(weight, dim, full = TRUE) <- gsub(".", "p", getItems(weight, dim, full = TRUE), fixed = TRUE)
     }
     dim <- dim + 0.1
@@ -65,7 +66,9 @@ toolFixWeight <- function(weight, map, dim) {
   }
   stopifnot(dim >= 1, dim < 4)
   mainDim <- floor(dim)
-  map <- stats::setNames(nm = map[[2]], object = map[[1]])
+  mapnames <- map[[2]]
+  map <- map[[1]]
+  names(map) <- mapnames
 
   # append subdim for coarse items according to map
   weight <- add_dimension(weight, dim + 0.1, "placeholder_dimname",
