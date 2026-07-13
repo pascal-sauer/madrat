@@ -55,10 +55,10 @@ toolFixWeight <- function(weight, map, dim) {
     } else {
       # merge all subdims into one dim, and replace back at the end using extramap
       originalMap2 <- map[[2]]
-      map[[1]] <- sub(".", "p", map[[1]], fixed = TRUE)
-      map[[2]] <- sub(".", "p", map[[2]], fixed = TRUE)
+      map[[1]] <- gsub(".", "p", map[[1]], fixed = TRUE)
+      map[[2]] <- gsub(".", "p", map[[2]], fixed = TRUE)
       extramap <- stats::setNames(nm = map[[2]], originalMap2)
-      getItems(weight, dim, full = TRUE) <- sub(".", "p", getItems(weight, dim, full = TRUE), fixed = TRUE)
+      getItems(weight, dim, full = TRUE) <- gsub(".", "p", getItems(weight, dim, full = TRUE), fixed = TRUE)
     }
     dim <- dim + 0.1
     stopifnot(dim %in% c(1.1, 2.1, 3.1))
