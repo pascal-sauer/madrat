@@ -19,7 +19,7 @@ library(madrat, quietly = TRUE)
 #> 
 #>     pmax, pmin
 getConfig("cachefolder", verbose = FALSE)
-#> [1] "/tmp/RtmpsRXPEv/madrat/cache/default"
+#> [1] "/tmp/RtmpO569aN/madrat/cache/default"
 ```
 
 When running data processing via `retrieveData` it currently offers two
@@ -75,7 +75,7 @@ getDependencies("calcTauTotal", packages = "madrat")
 #> 8            madrat:::toolGetMapping b688b718
 #> 9            madrat:::toolZeroWeight fd922370
 #> 10            madrat:::toolExpandRel 86691784
-#> 11            madrat:::toolFixWeight 894f5856
+#> 11            madrat:::toolFixWeight 9ba57793
 #> 12           madrat:::toolMapFromRel 37c2d9ee
 ```
 
@@ -92,7 +92,7 @@ setConfig(verbosity = 3)
 #> Global configuration update:
 #>   verbosity: 1 -> 3
 fp <- madrat:::fingerprint("calcTauTotal")
-#> hash components (f31f8045):
+#> hash components (a3043f13):
 #>   49fe8440 | madrat:::calcTauTotal | madrat:::calcTauTotal
 #>   51d42a7b | madrat:::readTau | madrat:::readTau
 #>   c095ab28 | madrat:::sysdata$iso_cell | madrat:::sysdata$iso_cell
@@ -103,7 +103,7 @@ fp <- madrat:::fingerprint("calcTauTotal")
 #> madrat:::toolAggregateWeighted
 #>   f02cc82a | madrat:::toolCountryFill | madrat:::toolCountryFill
 #>   86691784 | madrat:::toolExpandRel | madrat:::toolExpandRel
-#>   894f5856 | madrat:::toolFixWeight | madrat:::toolFixWeight
+#>   9ba57793 | madrat:::toolFixWeight | madrat:::toolFixWeight
 #>   d29738b5 | madrat:::toolGetAggregationMatrix | 
 #> madrat:::toolGetAggregationMatrix
 #>   b688b718 | madrat:::toolGetMapping | madrat:::toolGetMapping
