@@ -8,8 +8,8 @@
 #' @param weight magclass object containing weights to be used for a weighted
 #' (dis)aggregation. The provided weight does not need to be normalized, any
 #' number >= 0 is allowed.
-#' @param map a data frame where the first column contains coarse resolution items
-#' and the second column contains fine resolution items; fine resolution items
+#' @param map a 2-column data frame where one column contains coarse resolution items
+#' and the other column contains fine resolution items; fine resolution items
 #' must match items in weight
 #' @param dim which dim to fix (e.g. 1 or 3.2 or "region")
 #' @return weight, with weights set to 10^-30 only where otherwise the total
@@ -44,7 +44,11 @@ toolFixWeight <- function(weight, map, dim) {
   dim <- dimCode(dim, weight)
   stopifnot(length(dim) == 1,
             weight >= 0,
-            setequal(map[[2]], getItems(weight, dim)))
+            ncol(map) == 2)
+  if (!setequal(map[[2]], getItems(weight, dim))) {
+    map <- map[, 2:1]
+  }
+  stopifnot(setequal(map[[2]], getItems(weight, dim)))
   originalDimnames <- dimnames(weight)
 
   extramap <- NULL

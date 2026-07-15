@@ -58,7 +58,6 @@ test_that("toolFixWeight works with multi subdims map", {
 })
 
 test_that("toolFixWeight can handle large objects", {
-  skip("to save time skip test whether toolFixWeight can handle large objects")
   to <- Reduce(x = 1:26, init = NULL, f = function(total, i) {
     return(c(total, paste0(LETTERS[i], seq_len(1000 * i))))
   })

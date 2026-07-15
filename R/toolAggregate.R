@@ -219,8 +219,9 @@ toolAggregateWeighted <- function(x, rel, weight, from, to, dim, wdim, partrel,
   }
 
   weightAndWeightSum <- toolZeroWeight(weight, rel, from, to, dim, wdim, partrel, zeroWeight)
-  weight <- weightAndWeightSum$weight
-  weight2 <- 1 / (weightAndWeightSum$weightSum + 10^-100)
+  weight <- weightAndWeightSum$weight # fine resolution
+  weight2 <- 1 / (weightAndWeightSum$weightSum + 10^-100) # coarse resolution
+  stopifnot(length(weight) >= length(weight2))
 
   if (mixedAggregation) {
     weight2[is.na(weight2)] <- 1
@@ -233,15 +234,17 @@ toolAggregateWeighted <- function(x, rel, weight, from, to, dim, wdim, partrel,
   }
 
   if (setequal(getItems(weight, dim = wdim), getItems(x, dim = dim))) {
+    # weighted mean aggregation
     out <- toolAggregate(x * weight, rel, from = from, to = to, dim = dim, partrel = partrel) * weight2
   } else {
+    # weighted disaggregation
     out <- toolAggregate(x * weight2, rel, from = from, to = to, dim = dim, partrel = partrel) * weight
+    if (zeroWeight == "fix" && !isTRUE(all.equal(sum(out), sum(x)))) {
+      warning("total sum is not the same after toolAggregate despite zeroWeight = 'fix', ",
+              "please contact a madrat developer.")
+    }
   }
 
-  if (zeroWeight == "fix" && !isTRUE(all.equal(sum(out), sum(x)))) {
-    warning("total sum is not the same after toolAggregate despite zeroWeight = 'fix', ",
-            "please contact a madrat developer.")
-  }
 
   getComment(out) <- c(xComment, paste0("Data aggregated (toolAggregate): ", date()))
   return(out)
