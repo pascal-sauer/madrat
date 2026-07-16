@@ -64,7 +64,7 @@
                         <h4 data-toc-skip class="author">Jan Philipp
 Dietrich</h4>
             
-            <h4 data-toc-skip class="date">2026-07-15</h4>
+            <h4 data-toc-skip class="date">2026-07-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pik-piam/madrat/blob/master/vignettes/madrat-caching.Rmd" class="external-link"><code>vignettes/madrat-caching.Rmd</code></a></small>
       <div class="d-none name"><code>madrat-caching.Rmd</code></div>
@@ -90,7 +90,7 @@ located can be checked via</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     pmax, pmin</span></span>
 <span><span class="fu"><a href="../reference/getConfig.html">getConfig</a></span><span class="op">(</span><span class="st">"cachefolder"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpC1XMMJ/madrat/cache/default"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmptZPptW/madrat/cache/default"</span></span></code></pre></div>
 <p>When running data processing via <code>retrieveData</code> it
 currently offers two types of cache folders:
 <code>cachetype = "def"</code> will use a shared cachefolder in which
@@ -141,7 +141,7 @@ function which can be retrieved via <code>getDependencies</code>:</p>
 <span><span class="co">#&gt; 3             madrat:::toolAggregate d87bab1e</span></span>
 <span><span class="co">#&gt; 4           madrat:::toolCountryFill a1152c65</span></span>
 <span><span class="co">#&gt; 5  madrat:::toolGetAggregationMatrix d29738b5</span></span>
-<span><span class="co">#&gt; 6     madrat:::toolAggregateWeighted 460116a8</span></span>
+<span><span class="co">#&gt; 6     madrat:::toolAggregateWeighted 8bb41003</span></span>
 <span><span class="co">#&gt; 7   madrat:::toolAggregateUnweighted 255c73b9</span></span>
 <span><span class="co">#&gt; 8            madrat:::toolGetMapping b688b718</span></span>
 <span><span class="co">#&gt; 9            madrat:::toolZeroWeight 17e8a260</span></span>
@@ -160,14 +160,14 @@ the fingerprint of that specific function:</p>
 <span><span class="co">#&gt; Global configuration update:</span></span>
 <span><span class="co">#&gt;   verbosity: 1 -&gt; 3</span></span>
 <span><span class="va">fp</span> <span class="op">&lt;-</span> <span class="fu">madrat</span><span class="fu">:::</span><span class="fu"><a href="../reference/fingerprint.html">fingerprint</a></span><span class="op">(</span><span class="st">"calcTauTotal"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; hash components (f87eb727):</span></span>
+<span><span class="co">#&gt; hash components (e25bfcb5):</span></span>
 <span><span class="co">#&gt;   49fe8440 | madrat:::calcTauTotal | madrat:::calcTauTotal</span></span>
 <span><span class="co">#&gt;   51d42a7b | madrat:::readTau | madrat:::readTau</span></span>
 <span><span class="co">#&gt;   c095ab28 | madrat:::sysdata$iso_cell | madrat:::sysdata$iso_cell</span></span>
 <span><span class="co">#&gt;   d87bab1e | madrat:::toolAggregate | madrat:::toolAggregate</span></span>
 <span><span class="co">#&gt;   255c73b9 | madrat:::toolAggregateUnweighted | </span></span>
 <span><span class="co">#&gt; madrat:::toolAggregateUnweighted</span></span>
-<span><span class="co">#&gt;   460116a8 | madrat:::toolAggregateWeighted | </span></span>
+<span><span class="co">#&gt;   8bb41003 | madrat:::toolAggregateWeighted | </span></span>
 <span><span class="co">#&gt; madrat:::toolAggregateWeighted</span></span>
 <span><span class="co">#&gt;   a1152c65 | madrat:::toolCountryFill | madrat:::toolCountryFill</span></span>
 <span><span class="co">#&gt;   86691784 | madrat:::toolExpandRel | madrat:::toolExpandRel</span></span>
