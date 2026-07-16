@@ -129,7 +129,7 @@ toolGetMapping <- function(name, type = NULL, where = NULL,
   filetype <- tolower(file_ext(fname))
   if (filetype == "csv") {
     sep <- if (grepl(pattern = ";", x = readLines(fname, 1))) ";" else ","
-    return(read.csv(fname, sep = sep, stringsAsFactors = FALSE, comment.char = "*"))
+    return(utils::read.csv(fname, sep = sep, stringsAsFactors = FALSE, comment.char = "*"))
   } else if (filetype == "rda") {
     data <- NULL
     load(fname)

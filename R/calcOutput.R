@@ -104,10 +104,6 @@
 #' a <- calcOutput(type = "TauTotal")
 #' }
 #'
-#' @importFrom magclass nyears nregions getComment<- getComment getYears clean_magpie write.report write.magpie
-#' getCells getYears<- is.magpie dimSums
-#' @importFrom utils packageDescription read.csv2 read.csv
-#' @importFrom withr defer local_dir
 #' @export
 calcOutput <- function(type, aggregate = TRUE, file = NULL, years = NULL, # nolint
                        round = NULL, signif = NULL, supplementary = FALSE,
@@ -205,7 +201,7 @@ calcOutput <- function(type, aggregate = TRUE, file = NULL, years = NULL, # noli
     if (x$isocountries) {
       .countrycheck <- function(datacountries, name) {
         datacountries <- robustSort(datacountries)
-        isoCountry <- read.csv2(system.file("extdata", "iso_country.csv", package = "madrat"), row.names = NULL)
+        isoCountry <- utils::read.csv2(system.file("extdata", "iso_country.csv", package = "madrat"), row.names = NULL)
         isoCountry1 <- as.vector(isoCountry[, "x"])
         names(isoCountry1) <- isoCountry[, "X"]
         isocountries <- robustSort(isoCountry1)
@@ -268,11 +264,11 @@ calcOutput <- function(type, aggregate = TRUE, file = NULL, years = NULL, # noli
   }
 
   startinfo <- toolstartmessage(callString, "+")
-  defer({
+  withr::defer({
     toolendmessage(startinfo, "-")
   })
 
-  local_dir(getConfig("outputfolder"))
+  withr::local_dir(getConfig("outputfolder"))
 
   functionname <- prepFunctionName(type = type, prefix = "calc", ignore = ifelse(is.null(years), "years", NA))
   extraArgs <- sapply(attr(functionname, "formals"), function(x) return(eval(parse(text = x))), simplify = FALSE) # nolint
